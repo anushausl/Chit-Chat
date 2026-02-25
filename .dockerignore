@@ -1,0 +1,9 @@
+node_modules
+npm-debug.log
+Dockerfile
+.git
+.gitignore
+public/css/*.map
+public/js/*.map
+.env
+*.log

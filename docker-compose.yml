@@ -1,0 +1,22 @@
+version: '3.8'
+services:
+  app:
+    build: .
+    environment:
+      - PORT=3000
+      - JWT_SECRET=${JWT_SECRET}
+      - ADMIN_USERNAME=${ADMIN_USERNAME}
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD}
+      - ADMIN_TOKEN=${ADMIN_TOKEN}
+      - REDIS_URL=redis://redis:6379
+    ports:
+      - "3000:3000"
+    depends_on:
+      - redis
+    restart: unless-stopped
+
+  redis:
+    image: redis:7
+    restart: unless-stopped
+
+# Optional: add nginx service if you want to use it as reverse proxy

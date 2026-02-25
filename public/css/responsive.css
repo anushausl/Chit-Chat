@@ -1,0 +1,521 @@
+/* ============================================
+   RESPONSIVE & MOBILE STYLES
+   ============================================ */
+
+/* Tablets (768px and below) */
+@media (max-width: 768px) {
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.5rem; }
+    h3 { font-size: 1.2rem; }
+
+    .chat-sidebar {
+        width: 100%;
+        height: 50%;
+        border-right: none;
+        border-bottom: 2px solid var(--border-color);
+        flex-direction: row;
+    }
+
+    .sidebar-header {
+        flex: 0 0 auto;
+        padding: var(--spacing-md);
+        border-right: 2px solid var(--border-color);
+        border-bottom: none;
+    }
+
+    .users-list-container {
+        flex: 1;
+        overflow-x: auto;
+        overflow-y: hidden;
+        padding: var(--spacing-md) 0;
+    }
+
+    .users-list {
+        flex-direction: row;
+        flex-wrap: nowrap;
+        padding: 0 var(--spacing-md);
+        min-width: min-content;
+    }
+
+    .user-item {
+        flex-direction: column;
+        align-items: center;
+        min-width: 80px;
+        text-align: center;
+        gap: var(--spacing-sm);
+    }
+
+    .user-item-avatar {
+        width: 50px;
+        height: 50px;
+    }
+
+    .user-item-name,
+    .user-item-status {
+        font-size: 0.75rem;
+    }
+
+    .sidebar-footer {
+        display: none;
+    }
+
+    .chat-wrapper {
+        flex-direction: column;
+    }
+
+    .chat-main {
+        flex: 1;
+        width: 100%;
+    }
+}
+
+/* Mobile (480px and below) */
+@media (max-width: 480px) {
+    :root {
+        --spacing-lg: 16px;
+        --spacing-xl: 20px;
+    }
+
+    body {
+        font-size: 14px;
+    }
+
+    h1 { font-size: 1.5rem; }
+    h2 { font-size: 1.2rem; }
+    h3 { font-size: 1rem; }
+    h4 { font-size: 0.95rem; }
+
+    .app-container {
+        height: 100vh;
+        flex-direction: column;
+    }
+
+    /* Auth Section Mobile */
+    .auth-container {
+        max-width: 100%;
+        width: 95%;
+        padding: var(--spacing-lg);
+    }
+
+    .app-title {
+        font-size: 1.8rem;
+    }
+
+    .title-icon {
+        font-size: 2rem;
+    }
+
+    .form-group {
+        margin-bottom: var(--spacing-md);
+    }
+
+    /* Chat Section Mobile */
+    .chat-section {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .chat-wrapper {
+        width: 100%;
+        height: 100%;
+    }
+
+    .chat-sidebar {
+        position: absolute;
+        width: 250px;
+        height: 100%;
+        left: -250px;
+        top: 0;
+        z-index: 100;
+        border-right: 2px solid var(--border-color);
+        border-bottom: none;
+        flex-direction: column;
+        transition: left 0.3s ease;
+        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .chat-sidebar.active {
+        left: 0;
+    }
+
+    .sidebar-header {
+        border-right: none;
+        border-bottom: 2px solid var(--border-color);
+    }
+
+    .users-list-container {
+        flex: 1;
+        overflow-x: hidden;
+        overflow-y: auto;
+        padding: var(--spacing-md);
+    }
+
+    .users-list {
+        flex-direction: column;
+        flex-wrap: wrap;
+        padding: 0;
+    }
+
+    .user-item {
+        flex-direction: row;
+        align-items: center;
+        min-width: auto;
+        text-align: left;
+        width: 100%;
+    }
+
+    .sidebar-footer {
+        display: block;
+        padding: var(--spacing-md);
+        border-top: 2px solid var(--border-color);
+    }
+
+    .mobile-toggle {
+        display: flex;
+    }
+
+    .chat-header {
+        padding: var(--spacing-md);
+    }
+
+    .chat-header-left h2 {
+        font-size: 1.1rem;
+    }
+
+    .messages-container {
+        padding: var(--spacing-md);
+    }
+
+    .message-content {
+        max-width: 85%;
+    }
+
+    /* Message Input Mobile */
+    .message-input-area {
+        padding: var(--spacing-md);
+    }
+
+    .input-toolbar {
+        gap: var(--spacing-sm);
+        margin-bottom: var(--spacing-sm);
+    }
+
+    .input-wrapper {
+        gap: var(--spacing-sm);
+    }
+
+    .message-input {
+        padding: var(--spacing-sm) var(--spacing-md);
+        font-size: 14px;
+    }
+
+    .btn-send {
+        padding: var(--spacing-sm) var(--spacing-md);
+        font-size: 1rem;
+    }
+
+    /* Modal Mobile */
+    .modal-content {
+        width: 95%;
+        max-height: 90vh;
+    }
+
+    .emoji-grid {
+        grid-template-columns: repeat(auto-fill, minmax(35px, 1fr));
+    }
+
+    .emoji-item {
+        width: 35px;
+        height: 35px;
+        font-size: 1.2rem;
+    }
+
+    /* Notification Toast Mobile */
+    .notification-toast {
+        bottom: var(--spacing-md);
+        right: var(--spacing-md);
+        left: var(--spacing-md);
+        max-width: none;
+    }
+
+    /* Welcome Message Mobile */
+    .welcome-icon {
+        font-size: 3rem;
+    }
+
+    .welcome-message h2 {
+        font-size: 1.3rem;
+    }
+
+    .welcome-message p {
+        font-size: 0.9rem;
+    }
+}
+
+/* Extra Small Devices (320px and below) */
+@media (max-width: 320px) {
+    :root {
+        --spacing-md: 12px;
+        --spacing-lg: 14px;
+        --spacing-xl: 16px;
+    }
+
+    h1 { font-size: 1.3rem; }
+    h2 { font-size: 1.1rem; }
+    h3 { font-size: 0.95rem; }
+
+    .auth-container {
+        padding: var(--spacing-lg);
+    }
+
+    .app-title {
+        font-size: 1.5rem;
+    }
+
+    .title-icon {
+        font-size: 1.7rem;
+    }
+
+    .form-group input {
+        padding: var(--spacing-sm) var(--spacing-md);
+        font-size: 14px;
+    }
+
+    .btn {
+        padding: var(--spacing-md) var(--spacing-lg);
+        font-size: 0.9rem;
+    }
+
+    .chat-sidebar {
+        width: 200px;
+        left: -200px;
+    }
+
+    .user-item-name,
+    .user-item-status {
+        font-size: 0.7rem;
+    }
+
+    .emoji-grid {
+        grid-template-columns: repeat(auto-fill, minmax(30px, 1fr));
+    }
+
+    .emoji-item {
+        width: 30px;
+        height: 30px;
+        font-size: 1rem;
+    }
+}
+
+/* Landscape Mode */
+@media (max-width: 768px) and (orientation: landscape) {
+    .auth-section {
+        min-height: 100vh;
+    }
+
+    .auth-container {
+        max-width: 500px;
+    }
+
+    .chat-sidebar {
+        width: 200px;
+        height: 100%;
+        border-bottom: none;
+        border-right: 2px solid var(--border-color);
+        flex-direction: column;
+    }
+
+    .sidebar-header {
+        border-bottom: 2px solid var(--border-color);
+        border-right: none;
+    }
+
+    .users-list-container {
+        flex: 1;
+        overflow-x: hidden;
+        overflow-y: auto;
+        padding: var(--spacing-md);
+    }
+
+    .users-list {
+        flex-direction: column;
+    }
+
+    .sidebar-footer {
+        display: block;
+        border-top: 2px solid var(--border-color);
+        border-right: none;
+    }
+
+    .messages-container {
+        max-height: calc(100vh - 200px);
+    }
+}
+
+/* Print Styles */
+@media print {
+    .chat-sidebar,
+    .chat-header,
+    .message-input-area,
+    .btn-icon,
+    .mobile-toggle {
+        display: none;
+    }
+
+    .messages-container {
+        overflow-y: visible;
+    }
+
+    body {
+        background-color: white;
+    }
+}
+
+/* High DPI Displays */
+@media (-webkit-min-device-pixel-ratio: 2),
+       (min-resolution: 192dpi) {
+    .message-bubble,
+    .btn,
+    .avatar {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+}
+
+/* Touch Device Improvements */
+@media (hover: none) and (pointer: coarse) {
+    .btn,
+    .btn-icon,
+    .user-item,
+    .emoji-item {
+        min-height: 44px;
+        min-width: 44px;
+    }
+
+    .message-input {
+        font-size: 16px;
+    }
+
+    .btn-icon {
+        padding: var(--spacing-md);
+    }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Dark Mode for System Preference */
+@media (prefers-color-scheme: dark) {
+    body {
+        --text-primary: #ECF0F1;
+        --text-secondary: #BDC3C7;
+        --bg-white: #1A1A1A;
+        --bg-light: #2D2D2D;
+        --bg-lighter: #3A3A3A;
+        --border-color: #404040;
+    }
+}
+
+/* Specific Mobile Optimizations */
+@media (max-width: 480px) {
+    /* Prevent zoom on input focus */
+    input,
+    select,
+    textarea {
+        font-size: 16px;
+    }
+
+    /* Better touch targets */
+    button {
+        min-height: 44px;
+        min-width: 44px;
+    }
+
+    /* Optimized padding for smaller screens */
+    .message-bubble {
+        padding: var(--spacing-sm) var(--spacing-md);
+    }
+
+    .form-group {
+        margin-bottom: var(--spacing-md);
+    }
+
+    /* Prevent text selection on long press */
+    .btn {
+        user-select: none;
+        -webkit-user-select: none;
+    }
+}
+
+/* Foldable Device Support */
+@media (screen-spanning: single-fold-vertical) {
+    .app-container {
+        margin-left: env(viewport-segment-width 0 0);
+        margin-right: env(viewport-segment-width 1 0);
+    }
+
+    .chat-sidebar {
+        width: 30%;
+    }
+
+    .chat-main {
+        flex: 1;
+    }
+}
+
+/* Width Breakpoints - Tablets (750px - 1024px) */
+@media (min-width: 750px) and (max-width: 1024px) {
+    .chat-sidebar {
+        width: 250px;
+    }
+
+    .message-content {
+        max-width: 75%;
+    }
+
+    .auth-container {
+        max-width: 450px;
+    }
+}
+
+/* Width Breakpoints - Small Desktops (1025px - 1440px) */
+@media (min-width: 1025px) and (max-width: 1440px) {
+    .chat-sidebar {
+        width: 280px;
+    }
+
+    .message-content {
+        max-width: 70%;
+    }
+
+    .modal-content {
+        max-width: 450px;
+    }
+}
+
+/* Width Breakpoints - Large Desktops (1441px+) */
+@media (min-width: 1441px) {
+    .chat-sidebar {
+        width: 320px;
+    }
+
+    .message-content {
+        max-width: 60%;
+    }
+
+    .modal-content {
+        max-width: 600px;
+    }
+
+    .auth-container {
+        max-width: 500px;
+    }
+}

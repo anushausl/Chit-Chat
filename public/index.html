@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chit-Chat 💬 - Doodle Chat App</title>
+    
+    <!-- External Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&family=Fredoka+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/doodle.css">
+    <link rel="stylesheet" href="css/reactions.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/presence-indicators.css">
+    <link rel="stylesheet" href="css/notifications.css">
+    <link rel="stylesheet" href="css/media.css">
+    <link rel="stylesheet" href="css/search.css">
+    <link rel="stylesheet" href="css/analytics.css">
+    <link rel="stylesheet" href="css/theme-customizer.css">
+    <link rel="stylesheet" href="css/admin-dashboard.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Decorative Doodles Background -->
+        <div class="doodle-bg">
+            <svg class="doodle-shape doodle-circle" viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="40" fill="none" stroke="currentColor" stroke-width="2"/>
+            </svg>
+            <svg class="doodle-shape doodle-star" viewBox="0 0 100 100">
+                <path d="M50 10 L61 40 L92 40 L67 60 L79 90 L50 70 L21 90 L33 60 L8 40 L39 40 Z" fill="currentColor"/>
+            </svg>
+            <svg class="doodle-shape doodle-wave" viewBox="0 0 100 20">
+                <path d="M0 10 Q 25 5, 50 10 T 100 10" stroke="currentColor" stroke-width="3" fill="none"/>
+            </svg>
+        </div>
+
+        <!-- Auth Section (Login/Register) -->
+        <div id="authSection" class="auth-section">
+            <div class="auth-container">
+                <div class="auth-header">
+                    <h1 class="app-title">
+                        <span class="title-icon">💬</span>
+                        Chit-Chat
+                    </h1>
+                    <p class="app-subtitle">Where conversations come alive with doodles!</p>
+                </div>
+
+                <!-- Login Form -->
+                <div id="loginForm" class="auth-form active-form">
+                    <h2>Welcome Back!</h2>
+                    <form id="loginFormElement">
+                        <div class="form-group">
+                            <label for="loginUsername">Username</label>
+                            <input 
+                                type="text" 
+                                id="loginUsername" 
+                                placeholder="Enter your username" 
+                                required
+                            >
+                            <span class="doodle-underline"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="loginPassword">Password</label>
+                            <input 
+                                type="password" 
+                                id="loginPassword" 
+                                placeholder="Enter your password" 
+                                required
+                            >
+                            <span class="doodle-underline"></span>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-sign-in-alt"></i> Login
+                        </button>
+                    </form>
+
+                    <p class="form-switch">
+                        Don't have an account? 
+                        <a href="#" onclick="switchAuthForm(event)">Sign Up</a>
+                    </p>
+                </div>
+
+                <!-- Register Form -->
+                <div id="registerForm" class="auth-form">
+                    <h2>Join the Chat!</h2>
+                    <form id="registerFormElement">
+                        <div class="form-group">
+                            <label for="regUsername">Username</label>
+                            <input 
+                                type="text" 
+                                id="regUsername" 
+                                placeholder="Choose a username" 
+                                required
+                            >
+                            <span class="doodle-underline"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="regEmail">Email</label>
+                            <input 
+                                type="email" 
+                                id="regEmail" 
+                                placeholder="Enter your email" 
+                                required
+                            >
+                            <span class="doodle-underline"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="regPassword">Password</label>
+                            <input 
+                                type="password" 
+                                id="regPassword" 
+                                placeholder="Create a password" 
+                                required
+                            >
+                            <span class="doodle-underline"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="regConfirmPassword">Confirm Password</label>
+                            <input 
+                                type="password" 
+                                id="regConfirmPassword" 
+                                placeholder="Confirm your password" 
+                                required
+                            >
+                            <span class="doodle-underline"></span>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-user-plus"></i> Sign Up
+                        </button>
+                    </form>
+
+                    <p class="form-switch">
+                        Already have an account? 
+                        <a href="#" onclick="switchAuthForm(event)">Login</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Chat Section (Main App) -->
+        <div id="chatSection" class="chat-section hidden">
+            <div class="chat-wrapper">
+                <!-- Sidebar -->
+                <aside class="chat-sidebar">
+                    <div class="sidebar-header">
+                        <div class="user-profile">
+                            <div class="avatar" id="userAvatar">
+                                <span id="avatarInitials">U</span>
+                            </div>
+                            <div class="user-info">
+                                <h3 id="currentUsername">User</h3>
+                                <div class="status-indicator online"></div>
+                            </div>
+                            <button class="btn-icon" id="logoutBtn" title="Logout">
+                                <i class="fas fa-sign-out-alt"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="sidebar-search">
+                        <input 
+                            type="text" 
+                            id="userSearchInput" 
+                            placeholder="Search users..." 
+                            class="search-input"
+                        >
+                        <i class="fas fa-search"></i>
+                    </div>
+
+                    <div class="users-list-container">
+                        <h4 class="list-title">Online Users</h4>
+                        <div id="usersList" class="users-list">
+                            <!-- Users will be dynamically added here -->
+                        </div>
+                    </div>
+
+                    <div class="sidebar-footer">
+                        <button class="btn btn-secondary" id="settingsBtn">
+                            <i class="fas fa-cog"></i> Settings
+                        </button>
+                    </div>
+                </aside>
+
+                <!-- Main Chat Area -->
+                <main class="chat-main">
+                    <!-- Chat Header -->
+                    <div class="chat-header">
+                        <div class="chat-header-left">
+                            <button class="btn-icon mobile-toggle" id="mobileToggle">
+                                <i class="fas fa-bars"></i>
+                            </button>
+                            <h2 id="chatHeaderTitle">Select a user to chat</h2>
+                        </div>
+                        <div class="chat-header-right">
+                            <button class="btn-icon" id="adminBtn" title="Admin Panel" onclick="openAdminPanel()">
+                                <i class="fas fa-shield-alt"></i>
+                            </button>
+                            <button class="btn-icon" id="clearChatBtn" title="Clear chat">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Messages Container -->
+                    <div class="messages-container" id="messagesContainer">
+                        <div class="welcome-message">
+                            <div class="welcome-icon">🎨</div>
+                            <h2>Welcome to Chit-Chat!</h2>
+                            <p>Select a user from the list to start chatting</p>
+                            <p class="welcome-hint">Or wait for someone to message you</p>
+                        </div>
+                    </div>
+
+                    <!-- Typing Indicator -->
+                    <div id="typingIndicator" class="typing-indicator hidden">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+
+                    <!-- Message Input Area -->
+                    <div class="message-input-area">
+                        <div class="input-toolbar">
+                            <button class="btn-icon emoji-btn" id="emojiBtn" title="Emoji">
+                                <i class="fas fa-smile"></i>
+                            </button>
+                            <button class="btn-icon attach-btn" id="attachBtn" title="Attach file">
+                                <i class="fas fa-paperclip"></i>
+                            </button>
+                        </div>
+
+                        <div class="input-wrapper">
+                            <input 
+                                type="text" 
+                                id="messageInput" 
+                                placeholder="Type your message..." 
+                                class="message-input"
+                                disabled
+                            >
+                            <button class="btn-send" id="sendBtn" disabled>
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+
+                        <div class="input-info">
+                            <span id="charCounter">0/500</span>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </div>
+
+    <!-- ADMIN PANEL MODAL (redesigned) -->
+    <div id="adminModal" class="modal hidden">
+        <div class="admin-container" role="dialog" aria-modal="true" aria-label="Admin dashboard">
+            <button class="admin-close-btn" onclick="closeAdminModal()">&times;</button>
+
+            <aside class="admin-sidebar">
+                <div class="admin-header">
+                    <h2 class="admin-title">Admin</h2>
+                    <div class="admin-user-badge">Dashboard</div>
+                </div>
+
+                <nav class="admin-nav">
+                    <button class="admin-tab active" data-tab="login" onclick="switchAdminTab('login')">Login</button>
+                    <button class="admin-tab" data-tab="dashboard" onclick="switchAdminTab('dashboard')">Overview</button>
+                    <button class="admin-tab" data-tab="users" onclick="switchAdminTab('users')">Users</button>
+                    <button class="admin-tab" data-tab="messages" onclick="switchAdminTab('messages')">Messages</button>
+                    <button class="admin-tab" data-tab="tools" onclick="switchAdminTab('tools')">Tools</button>
+                </nav>
+
+                <div class="admin-sidebar-footer">
+                    <button class="admin-btn" onclick="adminLogout()">Logout</button>
+                </div>
+            </aside>
+
+            <main class="admin-content">
+                <!-- Login -->
+                <section id="adminLoginSection" class="admin-panel active">
+                    <h3>Admin Login</h3>
+                    <div class="admin-form">
+                        <div class="form-group">
+                            <label for="adminUsername">Username</label>
+                            <input type="text" id="adminUsername" placeholder="Admin Username" class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label for="adminPassword">Password</label>
+                            <input type="password" id="adminPassword" placeholder="Admin Password" class="form-input">
+                        </div>
+                        <button onclick="adminLogin()" class="admin-form-btn">Login</button>
+                        <div id="adminLoginError" class="error-msg"></div>
+                    </div>
+                </section>
+
+                <!-- Dashboard -->
+                <section id="adminDashboardSection" class="admin-panel" style="display: none;">
+                    <div class="admin-stats">
+                        <div class="stat-card">
+                            <div class="stat-number" id="totalUsersCount">0</div>
+                            <div class="stat-label">Total Users</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" id="onlineUsersCount">0</div>
+                            <div class="stat-label">Online Now</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" id="totalMessagesCount">0</div>
+                            <div class="stat-label">Total Messages</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" id="blockedUsersCount">0</div>
+                            <div class="stat-label">Blocked Users</div>
+                        </div>
+                    </div>
+
+                    <h4>Recent Actions</h4>
+                    <div id="recentActionsList" class="admin-audit-log"></div>
+                    <div style="margin-top:12px"><button class="admin-btn" onclick="loadDashboard()">Refresh</button></div>
+                </section>
+
+                <!-- Users -->
+                <section id="usersTab" class="admin-panel" style="display: none;">
+                    <h3>User Management</h3>
+                    <div class="admin-form">
+                        <input type="text" id="userSearchInput" placeholder="Search users..." onkeyup="filterUsersList()" class="form-input">
+                        <div id="usersList" class="admin-users-list"></div>
+                        <div><button class="admin-btn" onclick="loadAllUsers()">Refresh Users</button></div>
+                    </div>
+                </section>
+
+                <!-- Messages -->
+                <section id="messagesTab" class="admin-panel" style="display: none;">
+                    <h3>Messages</h3>
+                    <div style="margin-bottom: 12px; display:flex; gap:8px; align-items:center;">
+                        <input type="text" id="messageUserFilter" placeholder="Username or ID" class="form-input">
+                        <button class="admin-btn" onclick="loadMessages()">Load</button>
+                        <button class="admin-btn" onclick="loadFlaggedMessages()">Flagged</button>
+                    </div>
+                    <div id="messagesList" class="admin-messages-list"></div>
+                </section>
+
+                <!-- Tools -->
+                <section id="toolsTab" class="admin-panel" style="display: none;">
+                    <h3>Tools</h3>
+                    <div class="admin-form">
+                        <label>Broadcast</label>
+                        <textarea id="broadcastMessage" placeholder="Message to all users" class="form-input"></textarea>
+                        <select id="broadcastType" class="form-input"><option value="info">Info</option><option value="warning">Warning</option><option value="error">Error</option></select>
+                        <button class="admin-btn" onclick="sendBroadcast()">Send Broadcast</button>
+                        <hr>
+                        <button class="admin-btn" onclick="loadAuditLog()">Load Audit Log</button>
+                        <div id="auditLogList" class="admin-audit-log"></div>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <!-- Emoji Picker Modal -->
+    <div id="emojiModal" class="modal hidden">
+        <div class="modal-content emoji-picker">
+            <div class="modal-header">
+                <h3>Pick an Emoji</h3>
+                <button class="btn-icon modal-close" onclick="closeEmojiModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div id="emojiGrid" class="emoji-grid">
+                <!-- Emojis will be dynamically populated -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Settings Modal -->
+    <div id="settingsModal" class="modal hidden">
+        <div class="modal-content settings-panel">
+            <div class="modal-header">
+                <h3>Settings</h3>
+                <button class="btn-icon modal-close" onclick="closeSettingsModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body settings-body">
+                <div class="setting-item">
+                    <label for="themeToggle">
+                        <span>Dark Mode</span>
+                        <input type="checkbox" id="themeToggle" class="toggle-switch">
+                    </label>
+                </div>
+
+                <div class="setting-item">
+                    <label for="soundToggle">
+                        <span>Sound Notifications</span>
+                        <input type="checkbox" id="soundToggle" class="toggle-switch" checked>
+                    </label>
+                </div>
+
+                <div class="setting-item">
+                    <label for="notifToggle">
+                        <span>Desktop Notifications</span>
+                        <input type="checkbox" id="notifToggle" class="toggle-switch" checked>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="notificationToast" class="notification-toast"></div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/chat.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/emoji.js"></script>
+    <script src="js/user-presence.js"></script>
+    <script src="js/notifications.js"></script>
+    <script src="js/media-manager.js"></script>
+    <script src="js/search-engine.js"></script>
+    <script src="js/analytics.js"></script>
+    <script src="js/theme-manager.js"></script>
+    <script src="js/message-reactions.js"></script>
+    <script src="js/effects.js"></script>
+    <script src="js/message-display.js"></script>
+    <script src="js/socket-handler.js"></script>
+    <script src="js/admin-dashboard.js"></script>
+</body>
+</html>

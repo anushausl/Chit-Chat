@@ -1,0 +1,505 @@
+/* ============================================
+   PRESENCE INDICATORS & USER STATUS
+   ============================================ */
+
+/* Status Indicator Basics */
+.status-indicator {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    font-size: 8px;
+    font-weight: bold;
+    position: relative;
+}
+
+.status-indicator.online {
+    background-color: #2ecc71;
+    box-shadow: 0 0 8px rgba(46, 204, 113, 0.6);
+}
+
+.status-indicator.away {
+    background-color: #f39c12;
+    box-shadow: 0 0 8px rgba(243, 156, 18, 0.6);
+}
+
+.status-indicator.offline {
+    background-color: #95a5a6;
+    box-shadow: 0 0 4px rgba(149, 165, 166, 0.4);
+}
+
+/* Pulse ring animation for online status */
+.pulse-ring {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 2px solid #2ecc71;
+    animation: pulse-ring 2s infinite;
+}
+
+@keyframes pulse-ring {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1.8);
+        opacity: 0;
+    }
+}
+
+/* Typing Indicator */
+.typing-indicator {
+    display: flex;
+    gap: 3px;
+    align-items: flex-end;
+    height: 12px;
+}
+
+.typing-indicator span {
+    width: 4px;
+    height: 4px;
+    background-color: #3498db;
+    border-radius: 50%;
+    animation: type-bounce 1.4s infinite;
+}
+
+.typing-indicator span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.typing-indicator span:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes type-bounce {
+    0%, 60%, 100% {
+        transform: translateY(0);
+    }
+    30% {
+        transform: translateY(-8px);
+    }
+}
+
+/* User Presence Badge */
+.presence-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    font-size: 12px;
+    position: relative;
+    margin-right: 8px;
+}
+
+.presence-badge.online {
+    background-color: rgba(46, 204, 113, 0.1);
+    color: #2ecc71;
+}
+
+.presence-badge.away {
+    background-color: rgba(243, 156, 18, 0.1);
+    color: #f39c12;
+}
+
+.presence-badge.offline {
+    background-color: rgba(149, 165, 166, 0.1);
+    color: #95a5a6;
+}
+
+/* User List Enhancements */
+.user-item {
+    position: relative;
+    padding-left: 32px;
+}
+
+.user-item::before {
+    content: '';
+    position: absolute;
+    left: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: inherit;
+}
+
+.user-item.online {
+    border-left: 3px solid #2ecc71;
+}
+
+.user-item.away {
+    border-left: 3px solid #f39c12;
+    opacity: 0.8;
+}
+
+.user-item.offline {
+    border-left: 3px solid #95a5a6;
+    opacity: 0.6;
+}
+
+.user-item-status {
+    font-size: 12px;
+    color: #7f8c8d;
+    margin-top: 4px;
+}
+
+/* User Group Headers */
+.user-group-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    margin-top: 16px;
+    margin-bottom: 8px;
+    background: linear-gradient(90deg, rgba(52, 152, 219, 0.1) 0%, rgba(155, 89, 182, 0.1) 100%);
+    border-left: 3px solid #3498db;
+    border-radius: 4px;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.group-title {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.group-indicator {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+/* User Profile Card */
+.user-profile-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    padding: 0;
+    max-width: 400px;
+    animation: slide-up 0.3s ease-out, doodle-pop 0.6s ease-out;
+    overflow: hidden;
+}
+
+.profile-header {
+    position: relative;
+    padding: 24px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    text-align: center;
+}
+
+.profile-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin: 0 auto 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 32px;
+    font-weight: bold;
+    border: 4px solid white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.card-close-btn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: rgba(255, 255, 255, 0.3);
+    border: none;
+    color: white;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.card-close-btn:hover {
+    background: rgba(255, 255, 255, 0.5);
+    transform: rotate(90deg);
+}
+
+.profile-content {
+    padding: 24px;
+}
+
+.profile-content h3 {
+    margin: 0 0 12px;
+    font-size: 24px;
+    color: #2c3e50;
+    font-family: 'Fredoka One', cursive;
+}
+
+.profile-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 20px;
+    padding: 12px;
+    background: rgba(46, 204, 113, 0.1);
+    border-radius: 8px;
+    font-size: 14px;
+    color: #27ae60;
+}
+
+.profile-status span:first-child {
+    font-size: 14px;
+}
+
+.profile-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #ecf0f1;
+}
+
+.stat {
+    text-align: center;
+}
+
+.stat-label {
+    font-size: 12px;
+    color: #95a5a6;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.stat-value {
+    font-size: 24px;
+    font-weight: bold;
+    color: #3498db;
+    font-family: 'Fredoka One', cursive;
+}
+
+.profile-card .btn {
+    width: 100%;
+}
+
+/* Hover Effects for User Items */
+.user-item {
+    transition: all 0.2s ease;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.user-item::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2));
+    transition: right 0.3s ease;
+}
+
+.user-item:hover {
+    background-color: rgba(52, 152, 219, 0.1);
+    padding-left: 36px;
+}
+
+.user-item:hover::after {
+    right: 0;
+}
+
+/* User Item Animations */
+.user-item {
+    animation: slide-in 0.3s ease-out;
+}
+
+@keyframes slide-in {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Online Badge Pulse */
+.user-item.online .status-indicator {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        box-shadow: 0 0 8px rgba(46, 204, 113, 0.6);
+    }
+    50% {
+        box-shadow: 0 0 16px rgba(46, 204, 113, 1);
+    }
+}
+
+/* Read Receipt Indicators */
+.message-read-receipt {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    font-size: 10px;
+    color: #95a5a6;
+    margin-left: 4px;
+}
+
+.read-receipt-check {
+    opacity: 0.5;
+    transition: opacity 0.2s ease;
+}
+
+.read-receipt-check.double {
+    opacity: 1;
+    color: #3498db;
+}
+
+.read-receipt-check.double::before {
+    content: '✓✓';
+}
+
+/* Presence Context Menu */
+.presence-context-menu {
+    position: absolute;
+    background: white;
+    border: 2px solid #ecf0f1;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    min-width: 150px;
+}
+
+.presence-context-menu-item {
+    padding: 10px 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: #2c3e50;
+    transition: background 0.2s ease;
+}
+
+.presence-context-menu-item:hover {
+    background: rgba(52, 152, 219, 0.1);
+}
+
+.presence-context-menu-item:first-child {
+    border-radius: 6px 6px 0 0;
+}
+
+.presence-context-menu-item:last-child {
+    border-radius: 0 0 6px 6px;
+}
+
+/* Status Change Animation */
+.status-change {
+    animation: status-pulse 0.6s ease-out;
+}
+
+@keyframes status-pulse {
+    0% {
+        background-color: #f1c40f;
+        transform: scale(1.2);
+    }
+    100% {
+        background-color: inherit;
+        transform: scale(1);
+    }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .user-profile-card {
+        max-width: 90vw;
+        margin: 16px;
+    }
+
+    .profile-avatar {
+        width: 60px;
+        height: 60px;
+        font-size: 24px;
+    }
+
+    .profile-content h3 {
+        font-size: 20px;
+    }
+
+    .stat-value {
+        font-size: 20px;
+    }
+
+    .user-group-header {
+        padding: 10px 12px;
+        font-size: 10px;
+    }
+}
+
+/* Dark Mode Support */
+body.dark-mode .user-profile-card {
+    background: #2c3e50;
+    color: #ecf0f1;
+}
+
+body.dark-mode .profile-header {
+    background: linear-gradient(135deg, #34495e 0%, #2c3e50 100%);
+}
+
+body.dark-mode .profile-content h3 {
+    color: #ecf0f1;
+}
+
+body.dark-mode .profile-status {
+    background: rgba(46, 204, 113, 0.15);
+    color: #2ecc71;
+}
+
+body.dark-mode .profile-stats {
+    border-bottom-color: #34495e;
+}
+
+body.dark-mode .stat-label {
+    color: #7f8c8d;
+}
+
+body.dark-mode .user-group-header {
+    background: rgba(52, 152, 219, 0.15);
+    color: #ecf0f1;
+}
+
+body.dark-mode .user-item {
+    background-color: rgba(52, 73, 94, 0.3);
+}
+
+body.dark-mode .user-item:hover {
+    background-color: rgba(52, 152, 219, 0.15);
+}
+
+body.dark-mode .presence-context-menu {
+    background: #34495e;
+    border-color: #52687a;
+}
+
+body.dark-mode .presence-context-menu-item {
+    color: #ecf0f1;
+}
+
+body.dark-mode .presence-context-menu-item:hover {
+    background: rgba(52, 152, 219, 0.2);
+}
